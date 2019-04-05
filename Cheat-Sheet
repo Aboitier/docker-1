@@ -1,0 +1,37 @@
+DOCKER
+
+Set-up.
+`brew install docker`
+`brew install docker-machine` 
+
+`docker-machine create <name>`
+`docker-machine env test`
+
+# Create an environment variable for other shells to use the docker 
+`eval $(docker-machine env test)`   # what is that?
+
+`docker ps`                         # diff with docker ls ?
+
+
+## List Docker CLI commands
+docker
+docker container --help
+
+## Display Docker version and info
+docker --version
+docker version
+docker info
+
+## Execute Docker image
+docker run hello-world
+
+## List Docker images
+docker image ls
+
+## List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+
+https://docs.docker.com/machine/overview/
+https://docs.docker.com/get-started/part2/
