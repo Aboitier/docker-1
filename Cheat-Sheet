@@ -6,11 +6,14 @@ Set-up.
 
 `docker-machine create <name>`
 `docker-machine env test`
+`docker-machine restart test`
 
 # Create an environment variable for other shells to use the docker 
-`eval $(docker-machine env test)`   # what is that?
+`eval $(docker-machine env test)`
 
-`docker ps`                         # diff with docker ls ?
+
+## List Docker Containers
+`docker ps`                        
 
 
 ## List Docker CLI commands
@@ -35,3 +38,29 @@ docker container ls -aq
 
 https://docs.docker.com/machine/overview/
 https://docs.docker.com/get-started/part2/
+
+## Creating a Dockerfile 
+`` 
+    # Use an official Python runtime as a parent image
+    FROM python:2.7-slim
+
+    # Set the working directory
+    WORKDIR ~/work/.docker/image_test/app
+
+    COPY requirements.txt app/
+
+    # Install any needed packages specified in requirements.txt
+    RUN pip install --trusted-host pypi.python.org -r app/requirements.txt
+
+    # Make port 80 available to the world outside this container
+    EXPOSE 80
+
+    # Copy the WORKDIR contents into the container at /app
+    COPY . ~/work/.docker/image_test/app
+
+    # Define VARENV
+    ENV NAME World
+
+    # Run app.py when the container launches
+    CMD ["python", "app.py"] 
+``
